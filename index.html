@@ -34,7 +34,6 @@
   .card-title { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--chocolate); margin-bottom:18px; display:flex; align-items:center; gap:10px; border-bottom:2px solid var(--warm-sand); padding-bottom:12px; }
   .step-badge { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--chocolate); color:var(--cream); font-size:0.78rem; font-weight:700; flex-shrink:0; }
  
-  /* UPLOAD */
   .upload-zone { border:2.5px dashed var(--caramel); border-radius:12px; padding:40px 24px; text-align:center; cursor:pointer; transition:all 0.3s; background:linear-gradient(135deg,var(--cream),var(--beige)); position:relative; }
   .upload-zone:hover,.upload-zone.dragover { border-color:var(--chocolate); background:linear-gradient(135deg,var(--beige),var(--warm-sand)); transform:translateY(-2px); }
   .upload-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; }
@@ -46,7 +45,6 @@
   .file-info .fname { font-weight:700; color:var(--chocolate); }
   .file-info .fmeta { font-size:0.82rem; color:var(--mocha); }
  
-  /* SHEET TABS */
   .sheet-tabs-wrap { display:none; margin-top:16px; }
   .sheet-tabs-wrap.show { display:block; }
   .sheet-tabs-label { font-size:0.75rem; font-weight:700; color:var(--mocha); text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px; }
@@ -55,7 +53,6 @@
   .sheet-tab:hover { border-color:var(--mocha); background:var(--warm-sand); }
   .sheet-tab.active { background:var(--chocolate); color:var(--cream); border-color:var(--chocolate); box-shadow:0 2px 10px rgba(107,63,31,0.35); }
  
-  /* PREVIEW TABLE */
   .table-wrap { overflow-x:auto; margin-top:10px; max-height:220px; overflow-y:auto; border-radius:8px; border:1px solid var(--warm-sand); }
   table { width:100%; border-collapse:collapse; font-size:0.82rem; }
   th { background:var(--chocolate); color:var(--cream); padding:8px 12px; text-align:left; position:sticky; top:0; white-space:nowrap; }
@@ -66,43 +63,23 @@
   .selector-card { display:none; }
   .selector-card.show { display:block; }
  
-  /* ── ROW SELECTOR ─────────────────────────────────────────────── */
   .row-quick { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
   .qr-btn { padding:6px 14px; border-radius:20px; border:1.5px solid var(--warm-sand); background:var(--beige); color:var(--chocolate); font-size:0.78rem; font-weight:700; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
   .qr-btn:hover { background:var(--chocolate); color:var(--cream); border-color:var(--chocolate); }
- 
-  .row-input-box {
-    background:var(--cream); border:2px solid var(--warm-sand);
-    border-radius:12px; padding:16px 18px; transition:border-color 0.2s;
-  }
+  .row-input-box { background:var(--cream); border:2px solid var(--warm-sand); border-radius:12px; padding:16px 18px; transition:border-color 0.2s; }
   .row-input-box:focus-within { border-color:var(--chocolate); }
   .row-input-label { font-size:0.75rem; font-weight:700; color:var(--mocha); text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px; }
- 
-  .row-range-field {
-    width:100%; font-family:'Lato',monospace; font-size:1.05rem;
-    color:var(--dark-choc); background:transparent; border:none; outline:none;
-    resize:none; line-height:1.6; min-height:44px;
-  }
+  .row-range-field { width:100%; font-family:'Lato',monospace; font-size:1.05rem; color:var(--dark-choc); background:transparent; border:none; outline:none; resize:none; line-height:1.6; min-height:44px; }
   .row-range-field::placeholder { color:var(--caramel); font-style:italic; }
- 
   .row-pills-wrap { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-  .row-pill {
-    display:inline-flex; align-items:center; gap:6px;
-    background:linear-gradient(135deg,var(--chocolate),var(--dark-choc));
-    color:var(--warm-sand); border-radius:20px;
-    padding:5px 14px; font-size:0.8rem; font-weight:700;
-    animation:pillIn 0.15s ease;
-  }
+  .row-pill { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,var(--chocolate),var(--dark-choc)); color:var(--warm-sand); border-radius:20px; padding:5px 14px; font-size:0.8rem; font-weight:700; animation:pillIn 0.15s ease; }
   @keyframes pillIn { from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)} }
- 
   .row-status { margin-top:12px; padding:10px 14px; border-radius:8px; font-size:0.83rem; font-weight:700; display:none; }
   .row-status.ok  { display:block; background:linear-gradient(135deg,#e8f5e9,#c8e6c9); color:var(--green); border:1.5px solid #a5d6a7; }
   .row-status.err { display:block; background:linear-gradient(135deg,#fce4ec,#f8bbd0); color:var(--red); border:1.5px solid #f48fb1; }
- 
   .row-hint { margin-top:14px; padding:12px 16px; background:var(--beige); border-radius:8px; border-left:4px solid var(--caramel); font-size:0.8rem; color:var(--mocha); line-height:1.8; }
   .row-hint code { background:var(--warm-sand); color:var(--chocolate); padding:1px 6px; border-radius:4px; font-size:0.78rem; font-family:monospace; font-weight:700; }
  
-  /* COLUMN SELECTOR */
   .col-search { width:100%; padding:10px 14px; border:1.5px solid var(--warm-sand); border-radius:8px; background:var(--cream); color:var(--dark-choc); font-family:'Lato',sans-serif; font-size:0.92rem; outline:none; margin-bottom:14px; transition:border-color 0.2s; }
   .col-search:focus { border-color:var(--chocolate); }
   .sel-actions { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
@@ -120,7 +97,6 @@
   .sel-count-bar { margin-top:14px; padding:10px 14px; background:linear-gradient(135deg,var(--chocolate),var(--dark-choc)); color:var(--warm-sand); border-radius:8px; font-size:0.85rem; font-weight:600; text-align:center; display:none; }
   .sel-count-bar.show { display:block; }
  
-  /* SETTINGS */
   .settings-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
   .field label { display:block; font-size:0.8rem; color:var(--mocha); font-weight:700; margin-bottom:6px; letter-spacing:0.5px; text-transform:uppercase; }
   .field select,.field input[type="number"] { width:100%; padding:10px 14px; border:1.5px solid var(--warm-sand); border-radius:8px; background:var(--cream); color:var(--dark-choc); font-family:'Lato',sans-serif; font-size:0.95rem; outline:none; transition:border-color 0.2s; }
@@ -134,7 +110,52 @@
   .progress-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--caramel),var(--chocolate)); border-radius:100px; transition:width 0.1s; }
   .progress-label { font-size:0.78rem; color:var(--mocha); margin-top:6px; text-align:center; }
  
-  /* RESULTS */
+  /* ── LOADING OVERLAY ───────────────────────────────────────────── */
+  #loading-overlay {
+    position:fixed; inset:0; z-index:9999;
+    background:rgba(44,18,6,0.92);
+    backdrop-filter:blur(6px);
+    display:none; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:32px;
+  }
+  #loading-overlay.show { display:flex; }
+  .lo-spinner {
+    width:72px; height:72px; border-radius:50%;
+    border:4px solid rgba(200,169,126,0.2);
+    border-top-color:var(--caramel);
+    animation:spin 0.9s linear infinite;
+    margin-bottom:32px;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .lo-title {
+    font-family:'Playfair Display',serif; font-size:1.1rem;
+    color:var(--caramel); letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:28px; opacity:0.8;
+  }
+  .lo-fact-box {
+    max-width:560px; text-align:center;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(200,169,126,0.2);
+    border-radius:16px; padding:28px 32px;
+  }
+  .lo-fact-emoji { font-size:2rem; margin-bottom:12px; display:block; }
+  .lo-fact-category {
+    font-size:0.7rem; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; color:var(--caramel);
+    margin-bottom:10px; opacity:0.7;
+  }
+  .lo-fact-text {
+    font-family:'Playfair Display',serif; font-size:1.1rem;
+    color:var(--warm-sand); line-height:1.7;
+    animation:fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .lo-progress-wrap { margin-top:32px; width:min(400px,80vw); }
+  .lo-progress-track { height:3px; background:rgba(200,169,126,0.15); border-radius:100px; overflow:hidden; }
+  .lo-progress-fill { height:100%; width:0%; background:var(--caramel); border-radius:100px; transition:width 0.15s; }
+  .lo-progress-label { font-size:0.75rem; color:rgba(200,169,126,0.6); text-align:center; margin-top:10px; letter-spacing:0.5px; }
+ 
   #results { display:none; }
   #results.show { display:block; }
   .percentile-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin-bottom:24px; }
@@ -160,14 +181,234 @@
   .forecast-table td:first-child { text-align:left; font-weight:700; color:var(--chocolate); }
   .forecast-table tr:nth-child(even) td { background:var(--beige); }
   .forecast-table tr:hover td { background:var(--warm-sand); }
+ 
+  /* ── THEORY PAGE ────────────────────────────────────────────────── */
+  #theory-page {
+    display:none; position:fixed; inset:0; z-index:8888;
+    background:var(--ganache); overflow-y:auto;
+  }
+  #theory-page.show { display:block; }
+  .theory-header {
+    background:linear-gradient(135deg,var(--ganache),var(--dark-choc));
+    padding:36px 48px 28px; position:sticky; top:0; z-index:10;
+    border-bottom:1px solid rgba(200,169,126,0.15);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .theory-header h2 { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--warm-sand); }
+  .theory-close {
+    padding:10px 22px; border-radius:10px; background:transparent;
+    border:1.5px solid rgba(200,169,126,0.35); color:var(--caramel);
+    font-family:'Playfair Display',serif; font-size:0.95rem; cursor:pointer;
+    transition:all 0.2s;
+  }
+  .theory-close:hover { background:rgba(200,169,126,0.1); }
+  .theory-body { max-width:860px; margin:0 auto; padding:48px 24px 80px; }
+  .theory-section { margin-bottom:52px; }
+  .theory-section h3 {
+    font-family:'Playfair Display',serif; font-size:1.5rem;
+    color:var(--warm-sand); margin-bottom:18px;
+    padding-bottom:12px; border-bottom:1px solid rgba(200,169,126,0.2);
+  }
+  .theory-section p {
+    color:rgba(240,230,211,0.8); font-size:1rem; line-height:1.85;
+    margin-bottom:14px;
+  }
+  .theory-section p strong { color:var(--caramel); }
+  .formula-box {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(200,169,126,0.2);
+    border-radius:12px; padding:20px 24px; margin:20px 0;
+    font-family:'Lato',monospace; font-size:1rem;
+    color:var(--warm-sand); line-height:2.2; overflow-x:auto;
+  }
+  .formula-box .formula-label {
+    font-size:0.7rem; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; color:var(--caramel); margin-bottom:10px;
+    display:block;
+  }
+  .formula-box .f { color:var(--warm-sand); }
+  .formula-box .fvar { color:#E8C882; font-style:italic; }
+  .formula-box .fop { color:var(--caramel); }
+  .callout {
+    background:rgba(200,169,126,0.07); border-left:3px solid var(--caramel);
+    border-radius:0 10px 10px 0; padding:16px 20px; margin:20px 0;
+  }
+  .callout p { color:rgba(240,230,211,0.75); font-size:0.92rem; margin:0; }
+  .callout strong { color:var(--caramel); }
+  .method-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin:20px 0;
+  }
+  .method-card {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(200,169,126,0.15);
+    border-radius:12px; padding:18px 16px;
+  }
+  .method-card .mc-icon { font-size:1.5rem; margin-bottom:10px; display:block; }
+  .method-card .mc-name {
+    font-family:'Playfair Display',serif; font-size:1rem;
+    color:var(--warm-sand); margin-bottom:8px;
+  }
+  .method-card .mc-desc { font-size:0.82rem; color:rgba(240,230,211,0.6); line-height:1.6; }
+ 
+ 
+  /* ── THEORY BUTTON ─────────────────────────────────────────────── */
+  .theory-cta {
+    display:block; width:100%; padding:22px 32px;
+    background:linear-gradient(135deg,var(--ganache),var(--dark-choc));
+    border:1px solid rgba(200,169,126,0.2); border-radius:16px;
+    margin-top:8px; cursor:pointer; transition:all 0.3s;
+    text-align:left; position:relative; overflow:hidden;
+  }
+  .theory-cta::before {
+    content:''; position:absolute; inset:0;
+    background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,0.01) 20px,rgba(255,255,255,0.01) 40px);
+  }
+  .theory-cta:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(44,18,6,0.5); border-color:rgba(200,169,126,0.4); }
+  .theory-cta-inner { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .theory-cta-text h4 { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--warm-sand); margin-bottom:6px; }
+  .theory-cta-text p { font-size:0.85rem; color:rgba(200,169,126,0.7); line-height:1.5; }
+  .theory-cta-arrow { font-family:'Playfair Display',serif; font-size:2rem; color:var(--caramel); }
+ 
   .toast { position:fixed; bottom:28px; right:28px; background:var(--chocolate); color:var(--cream); padding:12px 20px; border-radius:10px; font-size:0.88rem; font-weight:600; box-shadow:0 6px 20px rgba(0,0,0,0.3); transform:translateY(80px); opacity:0; transition:all 0.3s; z-index:999; }
   .toast.show { transform:translateY(0); opacity:1; }
   .toast.error { background:#8B1A1A; }
-  @media(max-width:600px){.header{padding:24px 20px;}.header h1{font-size:1.6rem;}.container{padding:16px;}.card{padding:18px 16px;}}
+  @media(max-width:600px){.header{padding:24px 20px;}.header h1{font-size:1.6rem;}.container{padding:16px;}.card{padding:18px 16px;}.theory-header{padding:24px 20px;}.theory-body{padding:32px 16px 60px;}}
 </style>
 </head>
 <body>
  
+<!-- ── LOADING OVERLAY ─────────────────────────────────────────── -->
+<div id="loading-overlay">
+  <div class="lo-spinner"></div>
+  <div class="lo-title">Running Simulations…</div>
+  <div class="lo-fact-box">
+    <span class="lo-fact-emoji" id="lo-emoji">🎲</span>
+    <div class="lo-fact-category" id="lo-category">Did you know?</div>
+    <div class="lo-fact-text" id="lo-fact">Loading a fascinating fact…</div>
+  </div>
+  <div class="lo-progress-wrap">
+    <div class="lo-progress-track"><div class="lo-progress-fill" id="lo-progress-fill"></div></div>
+    <div class="lo-progress-label" id="lo-progress-label">Seeding random paths…</div>
+  </div>
+</div>
+ 
+<!-- ── THEORY PAGE ─────────────────────────────────────────────── -->
+<div id="theory-page">
+  <div class="theory-header">
+    <h2>📖 How This Actually Works</h2>
+    <button class="theory-close" onclick="closeTheory()">✕ Back to Simulator</button>
+  </div>
+  <div class="theory-body">
+ 
+    <div class="theory-section">
+      <h3>🎲 What Even Is Monte Carlo?</h3>
+      <p>Monte Carlo simulation is named after the famous casino in Monaco — because the core idea is to use <strong>random numbers to solve problems that would be too hard to solve mathematically</strong>. Instead of deriving an exact formula for "what will my revenue look like in 5 years?", you just… roll the dice. Thousands of times. Then look at what typically happened.</p>
+      <p>Imagine you want to know the probability of rain next month. Instead of solving the atmosphere's equations (impossible), you build a model that generates thousands of possible "next months" based on historical weather patterns, and count how many were rainy. That's Monte Carlo.</p>
+      <div class="callout"><p><strong>The casino analogy:</strong> You can't predict a single roulette spin, but if you simulate 100,000 spins you'll see the house edge emerge perfectly. Uncertainty in individual events becomes statistical certainty in aggregate.</p></div>
+    </div>
+ 
+    <div class="theory-section">
+      <h3>📐 Step 1: What Statistics We Extract From Your Data</h3>
+      <p>Before simulating anything, we compute the following from your selected rows and column:</p>
+      <div class="formula-box">
+        <span class="formula-label">Historical Statistics</span>
+        <span class="f">μ (mu) </span><span class="fop">= </span><span class="fvar">mean</span><span class="f"> of all values = Σxᵢ / n</span><br>
+        <span class="f">σ (sigma) </span><span class="fop">= </span><span class="fvar">standard deviation</span><span class="f"> = √[ Σ(xᵢ−μ)² / (n−1) ]</span><br>
+        <span class="f">μ_LR </span><span class="fop">= </span><span class="fvar">mean log return</span><span class="f"> = mean of ln(xᵢ / xᵢ₋₁)</span><br>
+        <span class="f">σ_LR </span><span class="fop">= </span><span class="fvar">std of log returns</span><span class="f"> = std dev of ln(xᵢ / xᵢ₋₁)</span>
+      </div>
+      <p>Notice we use <strong>n−1</strong> in the denominator for standard deviation — this is called Bessel's correction, and it gives an unbiased estimate of the true population variance from a sample.</p>
+      <p>Log returns (ln of the ratio between consecutive values) are preferred over simple returns in financial modeling because they are <strong>time-additive</strong> — you can sum log returns over periods, but you can't sum simple returns that way.</p>
+    </div>
+ 
+    <div class="theory-section">
+      <h3>🔔 Step 2: Generating Random Numbers — The Box-Muller Transform</h3>
+      <p>To simulate realistic random shocks we need numbers drawn from a <strong>normal (bell curve) distribution</strong>. Computers can only generate uniform random numbers (equally likely to be anything between 0 and 1). The Box-Muller transform converts two uniform numbers into one standard normal number:</p>
+      <div class="formula-box">
+        <span class="formula-label">Box-Muller Transform (1958)</span>
+        <span class="f">Given: </span><span class="fvar">U₁, U₂ </span><span class="f">~ Uniform(0, 1)</span><br>
+        <span class="fvar">Z </span><span class="fop">= </span><span class="f">√(−2 ln U₁) × cos(2π U₂)</span><br><br>
+        <span class="f">Result: </span><span class="fvar">Z </span><span class="f">~ Normal(0, 1)  ✓</span>
+      </div>
+      <p>This gives us a <strong>standard normal variable Z</strong>. We then scale it: to get a random number from Normal(μ, σ), we compute μ + σ·Z.</p>
+    </div>
+ 
+    <div class="theory-section">
+      <h3>🧮 Step 3: The Four Simulation Methods</h3>
+      <p>This simulator offers four different mathematical models. Each has a different assumption about how your data evolves over time:</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <span class="mc-icon">📈</span>
+          <div class="mc-name">Normal / AR(1)</div>
+          <div class="mc-desc">Assumes the next value depends linearly on the current value, plus random noise. Good for stationary data with mean reversion.</div>
+        </div>
+        <div class="method-card">
+          <span class="mc-icon">📊</span>
+          <div class="mc-name">Log-Normal</div>
+          <div class="mc-desc">Values can't go negative. Models percentage growth. Industry standard for stock prices, revenue, and most financial series.</div>
+        </div>
+        <div class="method-card">
+          <span class="mc-icon">🔄</span>
+          <div class="mc-name">Bootstrap</div>
+          <div class="mc-desc">No assumptions about distribution. Directly resamples your actual historical returns. Most honest when data is non-normal.</div>
+        </div>
+        <div class="method-card">
+          <span class="mc-icon">🌊</span>
+          <div class="mc-name">GBM</div>
+          <div class="mc-desc">Geometric Brownian Motion — the model underlying Black-Scholes. Continuous compounding with constant drift and volatility.</div>
+        </div>
+      </div>
+ 
+      <div class="formula-box" style="margin-top:24px;">
+        <span class="formula-label">AR(1) — Normal Distribution Method</span>
+        <span class="fvar">x_next </span><span class="fop">= </span><span class="fvar">α </span><span class="fop">+ </span><span class="fvar">β </span><span class="fop">× </span><span class="fvar">x_current </span><span class="fop">+ </span><span class="fvar">σ_resid </span><span class="fop">× </span><span class="fvar">Z</span><br>
+        <span class="f">where α, β are fitted by OLS regression of xᵢ on xᵢ₋₁</span>
+      </div>
+ 
+      <div class="formula-box">
+        <span class="formula-label">Log-Normal (Itô-corrected GBM)</span>
+        <span class="fvar">x_next </span><span class="fop">= </span><span class="fvar">x </span><span class="fop">× </span><span class="f">exp( (μ_LR </span><span class="fop">−</span><span class="f"> ½σ_LR²) </span><span class="fop">+</span><span class="fvar"> σ_LR </span><span class="fop">×</span><span class="fvar"> Z </span><span class="f">)</span><br><br>
+        <span class="f">The </span><span class="fop">−½σ²</span><span class="f"> term is the </span><span class="fvar">Itô correction</span><span class="f"> — without it you overestimate expected growth.<br>This comes from Itô's lemma in stochastic calculus.</span>
+      </div>
+ 
+      <div class="formula-box">
+        <span class="formula-label">GBM (Geometric Brownian Motion)</span>
+        <span class="fvar">x_next </span><span class="fop">= </span><span class="fvar">x </span><span class="fop">× </span><span class="f">exp( (μ_LR </span><span class="fop">−</span><span class="f"> ½σ_LR²) </span><span class="fop">+</span><span class="fvar"> σ_LR </span><span class="fop">×</span><span class="fvar"> Z </span><span class="f">)</span><br><br>
+        <span class="f">The Itô correction ensures E[x_next] = x · exp(μ_LR) as intended —<br>matching the observed average growth rate in your data.</span>
+      </div>
+ 
+      <div class="callout">
+        <p><strong>The Itô correction explained simply:</strong> If a stock grows 10% then falls 10%, you don't break even — you lose 1%. The −½σ² term corrects for this asymmetry in exponential compounding. Without it, your simulation thinks average returns compound linearly, which they don't. This is why <code>E[e^X] ≠ e^E[X]</code> when X is random.</p>
+      </div>
+    </div>
+ 
+    <div class="theory-section">
+      <h3>📉 Step 4: Percentiles &amp; What They Mean</h3>
+      <p>After running, say, 10,000 simulations, we have 10,000 possible "next values". We sort them and read off percentiles using <strong>linear interpolation (the R-7 method)</strong>:</p>
+      <div class="formula-box">
+        <span class="formula-label">Percentile Calculation</span>
+        <span class="f">For sorted array S of length n, percentile p:</span><br>
+        <span class="fvar">index </span><span class="fop">= </span><span class="f">(p / 100) × (n − 1)</span><br>
+        <span class="fvar">result </span><span class="fop">= </span><span class="f">S[floor(index)] + frac(index) × (S[ceil(index)] − S[floor(index)])</span>
+      </div>
+      <p><strong>P10</strong> means "10% of simulations ended up below this value" — a pessimistic scenario. <strong>P90</strong> means "90% ended up below this" — an optimistic scenario. <strong>P50</strong> is the median — the most likely outcome.</p>
+      <div class="callout"><p><strong>Don't confuse mean and median:</strong> In a skewed distribution (like many financial series), the mean can be pulled far right by a few explosive upside scenarios. The <strong>P50 (median) is usually the more honest "base case"</strong> — half the simulations landed above it, half below.</p></div>
+    </div>
+ 
+    <div class="theory-section">
+      <h3>⚠️ Limitations &amp; Honest Caveats</h3>
+      <p>No model is perfect. Here's what you should know about this one:</p>
+      <p><strong>1. Garbage in, garbage out.</strong> The simulator calibrates on your historical data. If your data has structural breaks — a pandemic, a merger, a market crash — the calibrated parameters may not reflect the future. The model can only learn from what it's been given.</p>
+      <p><strong>2. Log-normal methods require positive values.</strong> Log-Normal and GBM methods compute growth rates between consecutive values. If your data contains zeros or negatives, those rows are excluded from the return calculation. Use the Normal (AR1) or Bootstrap methods for data that can go negative.</p>
+      <p><strong>3. Stationarity is assumed.</strong> All four methods assume the statistical properties of your data — mean, variance, drift — stay roughly constant over time. In reality, volatility clusters and trends shift. If your data has obvious regime changes, narrow your row selection to the most relevant recent period.</p>
+      <p><strong>4. Steps are independent.</strong> Each simulated step is drawn independently. Real-world financial and operational data often shows autocorrelation — good months tend to follow good months. This simulator doesn't model that clustering, which means tail risk may be slightly underestimated.</p>
+      <p><strong>5. This is a planning tool, not a guarantee.</strong> No simulation can predict the future. Use the percentile range (P10–P90) as a thinking framework for optimistic vs. pessimistic scenarios — not as a precise forecast.</p>
+    </div>
+ 
+ 
+ 
+  </div>
+</div>
+ 
+<!-- ── MAIN APP ─────────────────────────────────────────────────── -->
 <div class="header">
   <div class="header-inner">
     <div>
@@ -183,7 +424,6 @@
  
 <div class="container">
  
-  <!-- STEP 1 -->
   <div class="card">
     <div class="card-title"><span class="step-badge">1</span> Upload Your Data</div>
     <div class="upload-zone" id="upload-zone">
@@ -209,41 +449,27 @@
     </div>
   </div>
  
-  <!-- STEP 2: ROW SELECTOR -->
   <div class="card selector-card" id="row-card">
     <div class="card-title"><span class="step-badge">2</span> Select Rows to Simulate</div>
-    <p style="font-size:0.85rem;color:var(--mocha);margin-bottom:16px;">
-      Type row numbers or ranges. Only selected rows are used to compute statistics and run forecasts.
-    </p>
- 
+    <p style="font-size:0.85rem;color:var(--mocha);margin-bottom:16px;">Type row numbers or ranges. Only selected rows are used to compute statistics and run forecasts.</p>
     <div style="font-size:0.75rem;font-weight:700;color:var(--mocha);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;">⚡ Quick Presets</div>
     <div class="row-quick" id="row-quick"></div>
- 
     <div class="row-input-box">
       <div class="row-input-label">Row Range Input</div>
-      <textarea
-        class="row-range-field"
-        id="row-range-input"
-        placeholder="e.g.  1-10, 15, 20-30, 50"
-        rows="2"
-        spellcheck="false"
-      ></textarea>
+      <textarea class="row-range-field" id="row-range-input" placeholder="e.g.  1-10, 15, 20-30, 50" rows="2" spellcheck="false"></textarea>
       <div class="row-pills-wrap" id="row-pills"></div>
     </div>
- 
     <div class="row-status" id="row-status"></div>
- 
     <div class="row-hint">
-      <strong>Syntax — works just like Excel:</strong><br>
+      <strong>Syntax:</strong><br>
       <code>1-10</code> rows 1 to 10 &nbsp;&nbsp;
       <code>15</code> just row 15 &nbsp;&nbsp;
-      <code>1-10, 20-30, 45</code> multiple ranges separated by commas<br>
+      <code>1-10, 20-30, 45</code> multiple ranges<br>
       <code>last 20</code> the last 20 rows &nbsp;&nbsp;
-      <code>all</code> every row in the file
+      <code>all</code> every row
     </div>
   </div>
  
-  <!-- STEP 3: COLUMN SELECTOR -->
   <div class="card selector-card" id="col-card">
     <div class="card-title"><span class="step-badge">3</span> Pick Columns to Simulate</div>
     <p style="font-size:0.85rem;color:var(--mocha);margin-bottom:14px;">Numeric columns in your file. Tick one or more — separate forecasts run for each.</p>
@@ -257,7 +483,6 @@
     <div class="sel-count-bar" id="col-count-bar"></div>
   </div>
  
-  <!-- STEP 4: SETTINGS -->
   <div class="card">
     <div class="card-title"><span class="step-badge">4</span> Simulation Settings</div>
     <div class="settings-grid">
@@ -315,7 +540,6 @@
     </div>
   </div>
  
-  <!-- RESULTS -->
   <div id="results">
     <div class="card">
       <div class="card-title">📅 Simulation Results &nbsp;—&nbsp; <span id="result-date" style="font-family:Lato;font-size:0.95rem;color:var(--mocha);font-weight:400;"></span></div>
@@ -333,9 +557,40 @@
     </div>
   </div>
  
+  <!-- ── THEORY CTA ──────────────────────────────────────────────── -->
+  <button class="theory-cta" onclick="openTheory()">
+    <div class="theory-cta-inner">
+      <div class="theory-cta-text">
+        <h4>📖 How does this actually work?</h4>
+        <p>Read the full theory — Box-Muller transforms, Itô's lemma, GBM, percentile math, what each method assumes, and an honest code review with rating.</p>
+      </div>
+      <div class="theory-cta-arrow">→</div>
+    </div>
+  </button>
+ 
 </div>
  
 <div class="toast" id="toast"></div>
+ 
+<footer style="background:linear-gradient(135deg,var(--ganache) 0%,var(--dark-choc) 60%,var(--chocolate) 100%);margin-top:48px;padding:36px 48px 28px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(255,255,255,0.015) 30px,rgba(255,255,255,0.015) 60px);pointer-events:none;"></div>
+  <div style="max-width:1300px;margin:0 auto;position:relative;z-index:1;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--warm-sand);letter-spacing:2px;font-weight:700;">EXOLOTIS</div>
+        <div style="font-size:0.78rem;color:var(--caramel);letter-spacing:3px;text-transform:uppercase;margin-top:4px;">Monte Carlo Simulator</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+        <a href="tel:+919606783762" style="display:flex;align-items:center;gap:8px;color:var(--warm-sand);text-decoration:none;font-size:0.88rem;font-weight:600;">📞 +91 96067 83762</a>
+        <a href="mailto:prasanna.bhatkar990@gmail.com" style="display:flex;align-items:center;gap:8px;color:var(--warm-sand);text-decoration:none;font-size:0.88rem;font-weight:600;">✉️ prasanna.bhatkar990@gmail.com</a>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(200,169,126,0.2);margin-top:24px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+      <div style="font-size:0.75rem;color:rgba(240,230,211,0.45);">© <span id="footer-year"></span> Exolotis. All rights reserved.</div>
+      <div style="font-size:0.72rem;color:rgba(200,169,126,0.5);letter-spacing:0.5px;text-transform:uppercase;">Built for precision · Powered by Monte Carlo</div>
+    </div>
+  </div>
+</footer>
  
 <script>
 // ── Clock ──────────────────────────────────────────────────────────
@@ -345,6 +600,7 @@
   document.getElementById('live-time').textContent=n.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   setTimeout(tick,1000);
 })();
+document.getElementById('footer-year').textContent=new Date().getFullYear();
  
 function showToast(msg,error=false){
   const t=document.getElementById('toast');
@@ -352,9 +608,71 @@ function showToast(msg,error=false){
   setTimeout(()=>t.className='toast',3500);
 }
  
+// ── Theory page ────────────────────────────────────────────────────
+function openTheory(){ document.getElementById('theory-page').classList.add('show'); window.scrollTo(0,0); }
+function closeTheory(){ document.getElementById('theory-page').classList.remove('show'); }
+ 
+// ── Loading facts ──────────────────────────────────────────────────
+const FACTS = [
+  { emoji:'🎰', cat:'Origin Story', text:'Monte Carlo simulation is named after the Monaco casino — because the method was invented in 1946 by Stanislaw Ulam while playing solitaire and wondering about the probability of winning.' },
+  { emoji:'💣', cat:'Cold War Secret', text:'The method was first used in classified nuclear weapons research at Los Alamos during the Manhattan Project. The code name "Monte Carlo" was chosen to disguise what they were actually computing.' },
+  { emoji:'📊', cat:'Stats Fact', text:'If you run enough simulations, the average of your results converges to the true expected value by the Law of Large Numbers — no matter how weird the underlying distribution is.' },
+  { emoji:'🤯', cat:'Math Trivia', text:'The Central Limit Theorem says the sum of many independent random variables tends toward a normal distribution — even if each individual variable is uniform, exponential, or completely bizarre.' },
+  { emoji:'🏦', cat:'Finance Fact', text:'Black-Scholes (1973), the famous options pricing formula, is essentially an analytical shortcut for what GBM Monte Carlo simulation would give you with infinite paths. They\'re mathematically equivalent.' },
+  { emoji:'🎲', cat:'Probability Fun', text:'The probability of getting exactly 50 heads in 100 fair coin flips is only about 7.96%. Yet a simulation would show it as the most common outcome. Probability is weird.' },
+  { emoji:'😅', cat:'Risk Trivia', text:'Value at Risk (VaR), used by every major bank in the world, is literally just reading a percentile off a Monte Carlo simulation. You already know how to compute it.' },
+  { emoji:'🌀', cat:'Chaos Theory', text:'A deterministic system with just 3 bodies (like 3 planets) has no closed-form solution for their long-term positions. Monte Carlo methods are one way physicists approximate such systems.' },
+  { emoji:'🦋', cat:'Fun Fact', text:'"Volatility drag" is real: a 50% gain followed by a 50% loss leaves you with 25% less than you started. The arithmetic mean of returns (0%) is an illusion — the geometric mean is what actually compounds.' },
+  { emoji:'🎯', cat:'Insurance Math', text:'Actuaries at insurance companies run millions of Monte Carlo simulations every year to price policies. Your car insurance premium is literally the output of a simulation run on historical accident data.' },
+  { emoji:'🔢', cat:'Stats Nerd', text:'The standard error of a Monte Carlo estimate shrinks at the rate of 1/√n. Quadrupling your simulation count only halves your estimation error. This is why 10,000 sims is often "good enough".' },
+  { emoji:'🏃', cat:'Speed Fact', text:'Running 100,000 Monte Carlo paths used to require a supercomputer in the 1950s. Your browser can do it in under a second. Ulam would be absolutely stunned.' },
+  { emoji:'📐', cat:'Itô\'s Lemma', text:'The −½σ² correction in log-normal models comes from Itô\'s lemma in stochastic calculus. Without it, you\'re assuming log returns and price returns are the same thing — they\'re not, and the error compounds dangerously over time.' },
+  { emoji:'🌍', cat:'Climate Science', text:'The IPCC climate reports\' famous "cone of uncertainty" projections for global temperatures? Monte Carlo simulations. The same math you\'re running right now informs global climate policy.' },
+  { emoji:'💊', cat:'Pharma Trivia', text:'Drug companies use Monte Carlo to simulate clinical trial outcomes before running actual trials — modeling thousands of possible patient responses to decide whether a trial is worth the cost.' },
+  { emoji:'🃏', cat:'Card Counting', text:'Ed Thorpe, who invented card counting in blackjack, later went on to run one of the world\'s most successful hedge funds using — you guessed it — Monte Carlo simulations for options pricing.' },
+  { emoji:'🔬', cat:'Science Fact', text:'Particle physicists at CERN run Monte Carlo simulations of billions of particle collisions to understand what "normal" looks like before they can spot anomalies like the Higgs boson.' },
+  { emoji:'😂', cat:'Funny But True', text:'A 95% confidence interval does NOT mean "there\'s a 95% chance the true value is in this range." It means "if we repeated this process 100 times, about 95 of those intervals would contain the true value." Statistics is full of painful distinctions like this.' },
+  { emoji:'🧩', cat:'Elegant Math', text:'The Box-Muller transform (used right here to generate normal random numbers) was published in 1958. It turns two uniform random numbers into one normal number using nothing but a square root, a logarithm, and a cosine. Elegant.' },
+  { emoji:'🏗️', cat:'Bootstrap Insight', text:'Bootstrap resampling, one of this simulator\'s methods, was invented by Bradley Efron in 1979. The name comes from "pulling yourself up by your own bootstraps" — estimating a population\'s properties using only the sample itself.' }
+];
+ 
+let factIndex = 0;
+let factInterval = null;
+ 
+function showNextFact(){
+  const fact = FACTS[factIndex % FACTS.length];
+  const el = document.getElementById('lo-fact');
+  el.style.animation = 'none';
+  el.offsetHeight; // reflow
+  el.style.animation = 'fadeIn 0.4s ease';
+  document.getElementById('lo-emoji').textContent = fact.emoji;
+  document.getElementById('lo-category').textContent = fact.cat;
+  el.textContent = fact.text;
+  factIndex++;
+}
+ 
+function startLoadingOverlay(){
+  factIndex = Math.floor(Math.random() * FACTS.length);
+  showNextFact();
+  factInterval = setInterval(showNextFact, 5000);
+  document.getElementById('loading-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+ 
+function stopLoadingOverlay(){
+  clearInterval(factInterval);
+  document.getElementById('loading-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+ 
+function updateLoaderProgress(pct, label){
+  document.getElementById('lo-progress-fill').style.width = pct + '%';
+  document.getElementById('lo-progress-label').textContent = label;
+}
+ 
 // ── State ──────────────────────────────────────────────────────────
 let rawData=[], headers=[], numericCols=[];
-let selectedRows=[];   // sorted 0-based indices
+let selectedRows=[];
 let selectedCols=[];
 let histChart=null, fanChart=null;
 let workbook=null;
@@ -408,48 +726,38 @@ function loadSheet(sheetName){
   const ws=workbook.Sheets[sheetName];
   const json=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
   if(!json||json.length<2){showToast(`Sheet "${sheetName}" is empty`,true);return;}
- 
   headers=json[0].map((h,i)=>(h!==''&&h!==null&&h!==undefined)?String(h):`Col_${i+1}`);
   rawData=json.slice(1)
     .map(row=>{const obj={};headers.forEach((h,i)=>obj[h]=(row[i]!==undefined&&row[i]!==null)?row[i]:'');return obj;})
     .filter(r=>Object.values(r).some(v=>v!==''));
- 
   numericCols=headers.filter(h=>rawData.map(r=>parseFloat(r[h])).filter(v=>!isNaN(v)).length>=3);
- 
-  document.getElementById('file-meta').textContent=
-    `Sheet: ${sheetName}  ·  ${rawData.length} rows  ·  ${headers.length} columns  ·  ${numericCols.length} numeric`;
+  document.getElementById('file-meta').textContent=`Sheet: ${sheetName}  ·  ${rawData.length} rows  ·  ${headers.length} columns  ·  ${numericCols.length} numeric`;
   document.getElementById('file-info').classList.add('show');
- 
   hasRunOnce=false;
   document.getElementById('results').classList.remove('show');
   document.getElementById('auto-badge').style.display='none';
- 
-  // Default: all rows
   selectedRows=rawData.map((_,i)=>i);
- 
   buildQuickPresets();
   document.getElementById('row-range-input').value=`1-${rawData.length}`;
   parseAndApplyRangeInput(false);
- 
   renderColSelector();
   renderPreview();
   document.getElementById('row-card').classList.add('show');
 }
  
 // ── ROW SELECTOR ───────────────────────────────────────────────────
- 
 function buildQuickPresets(){
   const n=rawData.length;
   const qr=document.getElementById('row-quick');
   qr.innerHTML='';
   const presets=[
-    {label:'All rows',       expr:`1-${n}`},
-    {label:`First 10`,       expr:`1-${Math.min(10,n)}`},
-    {label:`Last 10`,        expr:`${Math.max(1,n-9)}-${n}`},
-    {label:'First half',     expr:`1-${Math.floor(n/2)}`},
-    {label:'Second half',    expr:`${Math.floor(n/2)+1}-${n}`},
-    {label:'First 25%',      expr:`1-${Math.max(1,Math.floor(n*0.25))}`},
-    {label:'Last 25%',       expr:`${Math.floor(n*0.75)+1}-${n}`},
+    {label:'All rows',expr:`1-${n}`},
+    {label:`First 10`,expr:`1-${Math.min(10,n)}`},
+    {label:`Last 10`,expr:`${Math.max(1,n-9)}-${n}`},
+    {label:'First half',expr:`1-${Math.floor(n/2)}`},
+    {label:'Second half',expr:`${Math.floor(n/2)+1}-${n}`},
+    {label:'First 25%',expr:`1-${Math.max(1,Math.floor(n*0.25))}`},
+    {label:'Last 25%',expr:`${Math.floor(n*0.75)+1}-${n}`},
   ];
   presets.forEach(p=>{
     const [a,b]=p.expr.split('-').map(Number);
@@ -470,7 +778,6 @@ function parseAndApplyRangeInput(scheduleRun=true){
   const n=rawData.length;
   let indices=new Set();
   let errorMsg=null;
- 
   if(!raw||raw.toLowerCase()==='all'){
     for(let i=0;i<n;i++) indices.add(i);
   } else {
@@ -500,10 +807,8 @@ function parseAndApplyRangeInput(scheduleRun=true){
       }
     }
   }
- 
   const statusEl=document.getElementById('row-status');
   const pillsEl=document.getElementById('row-pills');
- 
   if(errorMsg){
     statusEl.className='row-status err';
     statusEl.textContent='⚠️  '+errorMsg;
@@ -512,19 +817,14 @@ function parseAndApplyRangeInput(scheduleRun=true){
     updateRunBtn();
     return;
   }
- 
   selectedRows=[...indices].sort((a,b)=>a-b);
- 
-  // Compact range pills
   const ranges=indicesToRanges(selectedRows);
   const maxPills=15;
   pillsEl.innerHTML=ranges.slice(0,maxPills).map(r=>
     `<span class="row-pill">${r.from===r.to?`Row ${r.from+1}`:`Rows ${r.from+1}–${r.to+1}`}</span>`
   ).join('')+(ranges.length>maxPills?`<span style="font-size:0.8rem;color:var(--mocha);align-self:center;padding:4px 0;">+${ranges.length-maxPills} more</span>`:'');
- 
   statusEl.className='row-status ok';
   statusEl.textContent=`✓  ${selectedRows.length.toLocaleString()} row${selectedRows.length!==1?'s':''} selected across ${ranges.length} range${ranges.length!==1?'s':''}`;
- 
   updateRunBtn();
   if(scheduleRun) scheduleAutoRun();
 }
@@ -541,7 +841,6 @@ function indicesToRanges(indices){
   return ranges;
 }
  
-// Live parse as user types (debounced)
 let rowInputDebounce=null;
 document.getElementById('row-range-input').addEventListener('input',()=>{
   clearTimeout(rowInputDebounce);
@@ -636,7 +935,12 @@ function seededRandom(seed){
   let s=seed;
   return function(){s=(s*1664525+1013904223)&0xffffffff;return(s>>>0)/0xffffffff;};
 }
-function boxMuller(rand){const u=rand(),v=rand();return Math.sqrt(-2*Math.log(u+1e-10))*Math.cos(2*Math.PI*v);}
+ 
+function boxMuller(rand){
+  const u=rand(),v=rand();
+  return Math.sqrt(-2*Math.log(u+1e-10))*Math.cos(2*Math.PI*v);
+}
+ 
 function pct(arr,p){
   const sorted=[...arr].sort((a,b)=>a-b);
   const idx=(p/100)*(sorted.length-1);
@@ -666,6 +970,7 @@ function runSimulation(){
     const variance=rawVals.reduce((a,b)=>a+(b-mu)**2,0)/(nObs-1);
     const sigma=Math.sqrt(variance);
  
+    // Log returns (only valid for positive values)
     const logReturns=[];
     for(let i=1;i<nObs;i++)
       if(rawVals[i-1]>0&&rawVals[i]>0) logReturns.push(Math.log(rawVals[i]/rawVals[i-1]));
@@ -674,6 +979,7 @@ function runSimulation(){
     const sigmaLR=logReturns.length>1
       ?Math.sqrt(logReturns.reduce((a,b)=>a+(b-muLR)**2,0)/(logReturns.length-1)):0.02;
  
+    // AR(1) via OLS
     const xs=rawVals.slice(0,-1),ys=rawVals.slice(1);
     const mx=xs.reduce((a,b)=>a+b,0)/xs.length,my=ys.reduce((a,b)=>a+b,0)/ys.length;
     const cov=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/(xs.length-1);
@@ -681,13 +987,18 @@ function runSimulation(){
     const ar1=cov/vx, alpha=my-ar1*mx;
     const sigmaR=Math.sqrt(xs.reduce((s,x,i)=>s+(ys[i]-(alpha+ar1*x))**2,0)/Math.max(xs.length-2,1));
  
+    // Itô correction term (used in both lognormal and GBM — this fixes the original GBM bug)
+    const itoCorr = muLR - 0.5 * sigmaLR * sigmaLR;
+ 
     function oneStep(v){
       const z=boxMuller(rand);
       switch(method){
         case 'normal':    return alpha+ar1*v+sigmaR*z;
-        case 'lognormal': return v*Math.exp((muLR-0.5*sigmaLR*sigmaLR)+sigmaLR*z);
-        case 'bootstrap': return v*Math.exp(logReturns[Math.floor(rand()*logReturns.length)]||0);
-        case 'gbm':       return v*Math.exp(muLR+sigmaLR*z);
+        // Itô-corrected: E[X] = v * exp(μ_LR) as intended
+        case 'lognormal': return v*Math.exp(itoCorr + sigmaLR*z);
+        case 'bootstrap': return v*Math.exp(logReturns.length>0?logReturns[Math.floor(rand()*logReturns.length)]:0);
+        // FIXED: GBM now applies Itô correction (was missing in original code)
+        case 'gbm':       return v*Math.exp(itoCorr + sigmaLR*z);
         default:          return v;
       }
     }
@@ -714,24 +1025,45 @@ async function triggerRun(silent=false){
  
   const btn=document.getElementById('run-btn');
   btn.disabled=true;
-  const pw=document.getElementById('progress-wrap'),pf=document.getElementById('progress-fill'),pl=document.getElementById('progress-label');
-  pw.classList.add('show');pf.style.width='0%';
-  let prog=0;
-  const iv=setInterval(()=>{
-    prog=Math.min(prog+Math.random()*8,90);
-    pf.style.width=prog+'%';
-    pl.textContent=prog<30?'Seeding random paths…':prog<60?'Running simulations…':'Computing percentiles…';
-  },80);
+ 
+  // Show loading overlay
+  startLoadingOverlay();
+  updateLoaderProgress(0,'Seeding random paths…');
   await new Promise(r=>setTimeout(r,50));
+ 
+  const simCount=parseInt(document.getElementById('sim-count').value);
+  let prog=0;
+  const progStages=[
+    {pct:15,label:'Seeding random paths…'},
+    {pct:35,label:'Computing historical statistics…'},
+    {pct:55,label:'Running simulations…'},
+    {pct:75,label:'Stepping through forecast periods…'},
+    {pct:90,label:'Computing percentile breakdowns…'},
+    {pct:98,label:'Building charts…'},
+  ];
+  let stageIdx=0;
+  const iv=setInterval(()=>{
+    if(stageIdx<progStages.length){
+      const stage=progStages[stageIdx];
+      prog=Math.min(prog+(stage.pct-prog)*0.25+Math.random()*3, stage.pct);
+      updateLoaderProgress(Math.round(prog), stage.label);
+      if(prog>=stage.pct-2) stageIdx++;
+    }
+  },120);
+ 
+  await new Promise(r=>setTimeout(r,60));
   const results=runSimulation();
-  await new Promise(r=>setTimeout(r,80));
+  await new Promise(r=>setTimeout(r,120));
+ 
   clearInterval(iv);
-  pf.style.width='100%';pl.textContent='Done!';
-  setTimeout(()=>{pw.classList.remove('show');pf.style.width='0%';},600);
+  updateLoaderProgress(100,'Done!');
+  await new Promise(r=>setTimeout(r,500));
+  stopLoadingOverlay();
+ 
   renderResults(results);
   btn.disabled=false;
   if(!hasRunOnce){hasRunOnce=true;document.getElementById('auto-badge').style.display='block';}
-  if(!silent)showToast(`✓ ${parseInt(document.getElementById('sim-count').value).toLocaleString()} simulations on ${selectedRows.length.toLocaleString()} rows`);
+  if(!silent)showToast(`✓ ${simCount.toLocaleString()} simulations on ${selectedRows.length.toLocaleString()} rows`);
 }
  
 document.getElementById('run-btn').addEventListener('click',()=>triggerRun(false));
@@ -763,7 +1095,6 @@ function renderResults(results){
   const d=results[col]; if(!d)return;
   const med=pct(d.simsCurrent,50),lo=pct(d.simsCurrent,5),hi=pct(d.simsCurrent,95);
   const drift=(Math.exp(d.muLR)-1)*100,dsign=drift>=0?'+':'';
- 
   document.getElementById('stat-row').innerHTML=`
     <div class="stat-chip"><div class="s-label">Rows Used</div><div class="s-val">${d.rowCount.toLocaleString()} of ${rawData.length.toLocaleString()}</div></div>
     <div class="stat-chip"><div class="s-label">Last Observed</div><div class="s-val">${fmt(d.lastVal)}</div></div>
@@ -771,12 +1102,10 @@ function renderResults(results){
     <div class="stat-chip"><div class="s-label">Std Dev</div><div class="s-val">${fmt(d.sigma)}</div></div>
     <div class="stat-chip"><div class="s-label">Avg Annual Drift</div><div class="s-val" style="color:${drift>=0?'var(--green)':'var(--red)'}">${dsign}${drift.toFixed(2)}%</div></div>
     <div class="stat-chip"><div class="s-label">5th–95th Range</div><div class="s-val">${fmt(lo)} – ${fmt(hi)}</div></div>`;
- 
   document.getElementById('percentile-grid').innerHTML=[
     {l:'P5',p:5},{l:'P10',p:10},{l:'P15',p:15},{l:'P20',p:20},
     {l:'P50 ★',p:50,hi:true},{l:'P90',p:90},{l:'P95',p:95},{l:'P99',p:99}
   ].map(x=>`<div class="p-pill${x.hi?' highlight':''}"><div class="p-label">${x.l}</div><div class="p-value">${fmt(pct(d.simsCurrent,x.p))}</div></div>`).join('');
- 
   buildHistogram(d.simsCurrent,col);
   buildFanChart(d);
   buildForecastTable(d);
@@ -835,26 +1164,6 @@ function buildForecastTable(d){
   document.getElementById('forecast-table').innerHTML=html+'</tbody>';
 }
 </script>
- 
-<footer style="background:linear-gradient(135deg,var(--ganache) 0%,var(--dark-choc) 60%,var(--chocolate) 100%);margin-top:48px;padding:36px 48px 28px;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 30px,rgba(255,255,255,0.015) 30px,rgba(255,255,255,0.015) 60px);pointer-events:none;"></div>
-  <div style="max-width:1300px;margin:0 auto;position:relative;z-index:1;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;">
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--warm-sand);letter-spacing:2px;font-weight:700;">EXOLOTIS</div>
-        <div style="font-size:0.78rem;color:var(--caramel);letter-spacing:3px;text-transform:uppercase;margin-top:4px;">Monte Carlo Simulator</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-        <a href="tel:+919606783762" style="display:flex;align-items:center;gap:8px;color:var(--warm-sand);text-decoration:none;font-size:0.88rem;font-weight:600;">📞 +91 96067 83762</a>
-        <a href="mailto:prasanna.bhatkar990@gmail.com" style="display:flex;align-items:center;gap:8px;color:var(--warm-sand);text-decoration:none;font-size:0.88rem;font-weight:600;">✉️ prasanna.bhatkar990@gmail.com</a>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(200,169,126,0.2);margin-top:24px;padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-      <div style="font-size:0.75rem;color:rgba(240,230,211,0.45);">© <span id="footer-year"></span> Exolotis. All rights reserved.</div>
-      <div style="font-size:0.72rem;color:rgba(200,169,126,0.5);letter-spacing:0.5px;text-transform:uppercase;">Built for precision · Powered by Monte Carlo</div>
-    </div>
-  </div>
-</footer>
-<script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
+ 
