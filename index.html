@@ -305,6 +305,42 @@
   .toast.error { background: #8B1A1A; }
  
  
+ 
+  /* ROW RANGE SELECTOR */
+  .row-range-wrap { display:none; margin-top:16px; }
+  .row-range-wrap.show { display:block; }
+  .row-range-label {
+    font-size:0.75rem; font-weight:700; color:var(--mocha);
+    text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px;
+  }
+  .row-range-controls {
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .row-range-controls span {
+    font-size:0.82rem; color:var(--mocha); font-weight:600; white-space:nowrap;
+  }
+  .row-input {
+    width:80px; padding:7px 10px;
+    border:1.5px solid var(--warm-sand); border-radius:8px;
+    background:var(--cream); color:var(--dark-choc);
+    font-family:'Lato',sans-serif; font-size:0.9rem;
+    outline:none; text-align:center;
+    transition:border-color 0.2s;
+  }
+  .row-input:focus { border-color:var(--chocolate); }
+  .row-range-info {
+    font-size:0.8rem; color:var(--chocolate); font-weight:700;
+    background:var(--beige); border-radius:6px; padding:5px 12px;
+    border:1px solid var(--warm-sand);
+  }
+  .row-range-reset {
+    padding:6px 12px; border-radius:7px;
+    border:1.5px solid var(--warm-sand);
+    background:var(--beige); color:var(--chocolate);
+    font-size:0.78rem; font-weight:700; cursor:pointer;
+    transition:all 0.2s;
+  }
+  .row-range-reset:hover { background:var(--chocolate); color:var(--cream); border-color:var(--chocolate); }
   /* SHEET TABS */
   .sheet-tabs-wrap { display:none; margin-top:16px; }
   .sheet-tabs-wrap.show { display:block; }
@@ -372,6 +408,19 @@
     <div class="sheet-tabs-wrap" id="sheet-tabs-wrap">
       <div class="sheet-tabs-label">📋 Sheets found — pick one to simulate</div>
       <div class="sheet-tabs" id="sheet-tabs"></div>
+    </div>
+ 
+    <!-- Row range selector -->
+    <div class="row-range-wrap" id="row-range-wrap">
+      <div class="row-range-label">✂️ Row Range — which rows to use for simulation</div>
+      <div class="row-range-controls">
+        <span>From row</span>
+        <input class="row-input" type="number" id="row-from" min="1" value="1">
+        <span>to row</span>
+        <input class="row-input" type="number" id="row-to" min="1" value="1">
+        <div class="row-range-info" id="row-range-info">— rows selected</div>
+        <button class="row-range-reset" id="row-range-reset">Reset to All</button>
+      </div>
     </div>
  
     <div id="preview-wrap" style="display:none; margin-top:16px;">
@@ -595,9 +644,54 @@ function loadSheet(sheetName) {
   document.getElementById('results').classList.remove('show');
   document.getElementById('auto-badge').style.display = 'none';
  
+  // Init row range controls
+  const totalRows = rawData.length;
+  const rowFrom = document.getElementById('row-from');
+  const rowTo   = document.getElementById('row-to');
+  rowFrom.value = 1;
+  rowFrom.max   = totalRows;
+  rowTo.value   = totalRows;
+  rowTo.max     = totalRows;
+  document.getElementById('row-range-wrap').classList.add('show');
+  updateRowRangeInfo();
+ 
   renderColSelector();
   renderPreview();
 }
+ 
+// ── Row range helpers ─────────────────────────────────────────────
+function getActiveRows() {
+  const from = Math.max(1, parseInt(document.getElementById('row-from').value) || 1);
+  const to   = Math.min(rawData.length, parseInt(document.getElementById('row-to').value) || rawData.length);
+  return rawData.slice(from - 1, to);
+}
+ 
+function updateRowRangeInfo() {
+  const from = Math.max(1, parseInt(document.getElementById('row-from').value) || 1);
+  const to   = Math.min(rawData.length, parseInt(document.getElementById('row-to').value) || rawData.length);
+  const count = Math.max(0, to - from + 1);
+  document.getElementById('row-range-info').textContent = `${count} row${count!==1?'s':''} selected (rows ${from}–${to})`;
+  // Highlight preview to match selection
+  highlightPreviewRows(from, to);
+}
+ 
+function highlightPreviewRows(from, to) {
+  document.querySelectorAll('#preview-table tbody tr').forEach((tr, i) => {
+    const rowNum = i + 1;
+    tr.style.opacity   = (rowNum >= from && rowNum <= to) ? '1' : '0.3';
+    tr.style.background = (rowNum >= from && rowNum <= to) ? '' : '#f5ede0';
+  });
+}
+ 
+// Row range event listeners (attached once)
+document.getElementById('row-from').addEventListener('input', () => { updateRowRangeInfo(); scheduleAutoRun(); });
+document.getElementById('row-to').addEventListener('input',   () => { updateRowRangeInfo(); scheduleAutoRun(); });
+document.getElementById('row-range-reset').addEventListener('click', () => {
+  document.getElementById('row-from').value = 1;
+  document.getElementById('row-to').value   = rawData.length;
+  updateRowRangeInfo();
+  scheduleAutoRun();
+});
  
 function renderColSelector() {
   buildColChecks(numericCols);
@@ -672,13 +766,17 @@ function updateSelected() {
 function renderPreview() {
   const wrap = document.getElementById('preview-wrap');
   const preview = rawData.slice(0, 50);
-  let html = '<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
-  preview.forEach(r => {
-    html += '<tr>' + headers.map(h => `<td>${r[h]}</td>`).join('') + '</tr>';
+  let html = '<table><thead><tr><th style="color:var(--caramel);font-size:0.72rem">#</th>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+  preview.forEach((r, i) => {
+    html += `<tr><td style="color:var(--caramel);font-size:0.75rem;font-weight:700">${i+1}</td>` + headers.map(h => `<td>${r[h]}</td>`).join('') + '</tr>';
   });
   html += '</tbody></table>';
   document.getElementById('preview-table').innerHTML = html;
   wrap.style.display = 'block';
+  // Re-apply highlight if row range already set
+  const from = parseInt(document.getElementById('row-from').value) || 1;
+  const to   = parseInt(document.getElementById('row-to').value)   || rawData.length;
+  highlightPreviewRows(from, to);
 }
  
 // ── Monte Carlo engine ────────────────────────────────────────────
@@ -716,7 +814,8 @@ function runSimulation() {
   const results  = {};
  
   selectedCols.forEach(col => {
-    const rawVals = rawData.map(r => parseFloat(r[col])).filter(v => !isNaN(v) && isFinite(v));
+    const activeRows = getActiveRows();
+    const rawVals = activeRows.map(r => parseFloat(r[col])).filter(v => !isNaN(v) && isFinite(v));
     if (rawVals.length < 2) return;
  
     const n_obs   = rawVals.length;
