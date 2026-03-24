@@ -229,16 +229,67 @@
   .forecast-table tr:nth-child(even) td { background: var(--beige); }
   .forecast-table tr:hover td { background: var(--warm-sand); }
  
-  /* COLUMN SELECTOR */
-  .col-check-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-  .col-check {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--beige); border: 1.5px solid var(--warm-sand);
-    border-radius: 8px; padding: 7px 12px; cursor: pointer;
-    font-size: 0.85rem; color: var(--dark-choc); transition: all 0.2s;
+  /* COLUMN SELECTOR CARD */
+  .col-card { display: none; }
+  .col-card.show { display: block; }
+ 
+  .col-search {
+    width: 100%; padding: 10px 14px;
+    border: 1.5px solid var(--warm-sand); border-radius: 8px;
+    background: var(--cream); color: var(--dark-choc);
+    font-family: 'Lato', sans-serif; font-size: 0.92rem;
+    outline: none; margin-bottom: 14px;
+    transition: border-color 0.2s;
   }
-  .col-check input { accent-color: var(--chocolate); }
-  .col-check:hover { border-color: var(--chocolate); }
+  .col-search:focus { border-color: var(--chocolate); }
+ 
+  .col-actions { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .col-action-btn {
+    padding: 6px 14px; border-radius: 7px; border: 1.5px solid var(--warm-sand);
+    background: var(--beige); color: var(--chocolate);
+    font-size: 0.78rem; font-weight: 700; cursor: pointer; letter-spacing: 0.4px;
+    transition: all 0.2s;
+  }
+  .col-action-btn:hover { background: var(--chocolate); color: var(--cream); border-color: var(--chocolate); }
+ 
+  .col-check-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+ 
+  .col-check {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--beige); border: 2px solid var(--warm-sand);
+    border-radius: 10px; padding: 12px 14px; cursor: pointer;
+    font-size: 0.88rem; color: var(--dark-choc); transition: all 0.2s;
+    user-select: none;
+  }
+  .col-check input { display: none; }
+  .col-check .tick {
+    width: 20px; height: 20px; border-radius: 5px;
+    border: 2px solid var(--caramel); background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 0.8rem; transition: all 0.2s;
+  }
+  .col-check.checked { border-color: var(--chocolate); background: linear-gradient(135deg, #f5ede0, #ede0cc); }
+  .col-check.checked .tick { background: var(--chocolate); border-color: var(--chocolate); color: var(--cream); }
+  .col-check:hover { border-color: var(--mocha); transform: translateY(-1px); box-shadow: 0 3px 10px var(--shadow); }
+ 
+  .col-check .col-name { font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .col-check .col-meta { font-size: 0.72rem; color: var(--mocha); margin-top: 2px; }
+ 
+  .col-selected-count {
+    margin-top: 14px; padding: 10px 14px;
+    background: linear-gradient(135deg, var(--chocolate), var(--dark-choc));
+    color: var(--warm-sand); border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600; text-align: center;
+    display: none;
+  }
+  .col-selected-count.show { display: block; }
+ 
+  .step-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--chocolate); color: var(--cream);
+    font-size: 0.78rem; font-weight: 700; margin-right: 8px; flex-shrink: 0;
+  }
  
   /* TOAST */
   .toast {
@@ -253,6 +304,28 @@
   .toast.show { transform: translateY(0); opacity: 1; }
   .toast.error { background: #8B1A1A; }
  
+ 
+  /* SHEET TABS */
+  .sheet-tabs-wrap { display:none; margin-top:16px; }
+  .sheet-tabs-wrap.show { display:block; }
+  .sheet-tabs-label {
+    font-size:0.75rem; font-weight:700; color:var(--mocha);
+    text-transform:uppercase; letter-spacing:0.6px; margin-bottom:8px;
+  }
+  .sheet-tabs { display:flex; flex-wrap:wrap; gap:8px; }
+  .sheet-tab {
+    padding:7px 18px; border-radius:20px;
+    border:1.5px solid var(--warm-sand);
+    background:var(--beige); color:var(--chocolate);
+    font-size:0.85rem; font-weight:600; cursor:pointer;
+    transition:all 0.2s; white-space:nowrap;
+  }
+  .sheet-tab:hover { border-color:var(--mocha); background:var(--warm-sand); }
+  .sheet-tab.active {
+    background:var(--chocolate); color:var(--cream);
+    border-color:var(--chocolate);
+    box-shadow:0 2px 10px rgba(107,63,31,0.35);
+  }
   /* RESPONSIVE */
   @media (max-width: 600px) {
     .header { padding: 24px 20px; }
@@ -295,16 +368,34 @@
         <div class="fmeta" id="file-meta"></div>
       </div>
     </div>
-    <div id="col-selector" style="display:none; margin-top:18px;">
-      <div class="card-title" style="border:none; padding:0; margin-bottom:8px; font-size:1rem;">
-        <span class="icon">☑️</span> Select numeric columns to simulate
-      </div>
-      <div class="col-check-wrap" id="col-checks"></div>
+    <!-- Sheet selector (shown only for multi-sheet files) -->
+    <div class="sheet-tabs-wrap" id="sheet-tabs-wrap">
+      <div class="sheet-tabs-label">📋 Sheets found — pick one to simulate</div>
+      <div class="sheet-tabs" id="sheet-tabs"></div>
     </div>
+ 
     <div id="preview-wrap" style="display:none; margin-top:16px;">
       <div class="card-title" style="border:none; padding:0; margin-bottom:8px; font-size:1rem;"><span>👁️</span> Data Preview (first 50 rows)</div>
       <div class="table-wrap" id="preview-table"></div>
     </div>
+  </div>
+ 
+  <!-- COLUMN SELECTOR — Step 2 -->
+  <div class="card col-card" id="col-card">
+    <div class="card-title">
+      <span class="step-badge">2</span> Pick Your Column to Simulate
+    </div>
+    <p style="font-size:0.85rem; color:var(--mocha); margin-bottom:14px;">
+      These are the numeric columns found in your file. <strong>Tick one or more</strong> — the simulator will run separate forecasts for each selected column.
+    </p>
+    <input class="col-search" type="text" id="col-search" placeholder="🔍  Search columns by name…">
+    <div class="col-actions">
+      <button class="col-action-btn" id="sel-all-btn">✅ Select All</button>
+      <button class="col-action-btn" id="desel-all-btn">☐ Deselect All</button>
+      <button class="col-action-btn" id="sel-first-btn">Select First 3</button>
+    </div>
+    <div class="col-check-wrap" id="col-checks"></div>
+    <div class="col-selected-count" id="col-count-bar"></div>
   </div>
  
   <!-- SETTINGS -->
@@ -354,7 +445,12 @@
         <input type="number" id="rand-seed" placeholder="Leave blank = random" min="0">
       </div>
     </div>
-    <button class="run-btn" id="run-btn" disabled>🍫 Run Monte Carlo Simulation</button>
+    <div style="display:flex; align-items:center; gap:12px; margin-top:24px; flex-wrap:wrap;">
+      <button class="run-btn" id="run-btn" disabled style="margin-top:0; flex:1; min-width:220px;">🍫 Run Monte Carlo Simulation</button>
+      <div id="auto-badge" style="display:none; background:var(--beige); border:1.5px solid var(--caramel); border-radius:8px; padding:8px 14px; font-size:0.78rem; color:var(--mocha); font-weight:700; white-space:nowrap;">
+        ⚡ Auto-updating on changes
+      </div>
+    </div>
     <div class="progress-bar-wrap" id="progress-wrap">
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
       <div class="progress-label" id="progress-label">Preparing simulations...</div>
@@ -426,6 +522,8 @@ zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
 zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
 document.getElementById('file-input').addEventListener('change', e => handleFile(e.target.files[0]));
  
+let workbook = null;
+ 
 function handleFile(file) {
   if (!file) return;
   const ext = file.name.split('.').pop().toLowerCase();
@@ -434,55 +532,140 @@ function handleFile(file) {
   const reader = new FileReader();
   reader.onload = e => {
     try {
-      const wb = XLSX.read(e.target.result, { type: 'array' });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
-      if (json.length < 2) { showToast('File appears empty', true); return; }
- 
-      headers = json[0].map((h,i) => h !== '' ? String(h) : `Col_${i+1}`);
-      rawData = json.slice(1).map(row => {
-        const obj = {};
-        headers.forEach((h,i) => obj[h] = row[i] !== undefined ? row[i] : '');
-        return obj;
-      }).filter(r => Object.values(r).some(v => v !== ''));
- 
-      numericCols = headers.filter(h => {
-        const vals = rawData.map(r => parseFloat(r[h])).filter(v => !isNaN(v));
-        return vals.length >= 3;
-      });
+      workbook = XLSX.read(e.target.result, { type: 'array' });
+      const sheetNames = workbook.SheetNames;
  
       document.getElementById('file-name').textContent = file.name;
-      document.getElementById('file-meta').textContent = `${rawData.length} rows · ${headers.length} columns · ${numericCols.length} numeric columns detected`;
-      document.getElementById('file-info').classList.add('show');
-      renderColSelector();
-      renderPreview();
-      showToast(`Loaded ${rawData.length} rows successfully ✓`);
+ 
+      // Show sheet tabs only if more than 1 sheet
+      const tabsWrap = document.getElementById('sheet-tabs-wrap');
+      const tabsContainer = document.getElementById('sheet-tabs');
+      tabsContainer.innerHTML = '';
+ 
+      if (sheetNames.length > 1) {
+        sheetNames.forEach((name, idx) => {
+          const btn = document.createElement('button');
+          btn.className = 'sheet-tab' + (idx === 0 ? ' active' : '');
+          btn.textContent = name;
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.sheet-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            loadSheet(name);
+          });
+          tabsContainer.appendChild(btn);
+        });
+        tabsWrap.classList.add('show');
+        showToast(`${sheetNames.length} sheets found — showing "${sheetNames[0]}"`);
+      } else {
+        tabsWrap.classList.remove('show');
+        showToast(`Loaded successfully ✓`);
+      }
+ 
+      loadSheet(sheetNames[0]);
     } catch(err) { showToast('Could not parse file: ' + err.message, true); }
   };
   reader.readAsArrayBuffer(file);
 }
  
+function loadSheet(sheetName) {
+  const ws = workbook.Sheets[sheetName];
+  const json = XLSX.utils.sheet_to_json(ws, { header:1, defval:'' });
+  if (!json || json.length < 2) {
+    showToast(`Sheet "${sheetName}" is empty or has no data`, true); return;
+  }
+ 
+  headers = json[0].map((h, i) => (h !== '' && h !== null && h !== undefined) ? String(h) : `Col_${i+1}`);
+  rawData = json.slice(1).map(row => {
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (row[i] !== undefined && row[i] !== null) ? row[i] : '');
+    return obj;
+  }).filter(r => Object.values(r).some(v => v !== ''));
+ 
+  numericCols = headers.filter(h => {
+    const vals = rawData.map(r => parseFloat(r[h])).filter(v => !isNaN(v));
+    return vals.length >= 3;
+  });
+ 
+  document.getElementById('file-meta').textContent =
+    `Sheet: ${sheetName}  ·  ${rawData.length} rows  ·  ${headers.length} columns  ·  ${numericCols.length} numeric columns`;
+  document.getElementById('file-info').classList.add('show');
+ 
+  // Reset results when sheet changes
+  hasRunOnce = false;
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('auto-badge').style.display = 'none';
+ 
+  renderColSelector();
+  renderPreview();
+}
+ 
 function renderColSelector() {
+  buildColChecks(numericCols);
+  document.getElementById('col-card').classList.add('show');
+ 
+  document.getElementById('col-search').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    buildColChecks(numericCols.filter(c => c.toLowerCase().includes(q)));
+  });
+  document.getElementById('sel-all-btn').addEventListener('click', () => {
+    document.querySelectorAll('#col-checks .col-check').forEach(el => {
+      el.classList.add('checked'); el.querySelector('input').checked = true;
+      el.querySelector('.tick').textContent = '✓';
+    }); updateSelected();
+  });
+  document.getElementById('desel-all-btn').addEventListener('click', () => {
+    document.querySelectorAll('#col-checks .col-check').forEach(el => {
+      el.classList.remove('checked'); el.querySelector('input').checked = false;
+      el.querySelector('.tick').textContent = '';
+    }); updateSelected();
+  });
+  document.getElementById('sel-first-btn').addEventListener('click', () => {
+    document.querySelectorAll('#col-checks .col-check').forEach((el, i) => {
+      const on = i < 3;
+      el.classList.toggle('checked', on); el.querySelector('input').checked = on;
+      el.querySelector('.tick').textContent = on ? '✓' : '';
+    }); updateSelected();
+  });
+  setTimeout(() => document.getElementById('col-card').scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  updateSelected();
+}
+ 
+function buildColChecks(cols) {
   const wrap = document.getElementById('col-checks');
+  const checked = new Set([...document.querySelectorAll('#col-checks input:checked')].map(c => c.value));
   wrap.innerHTML = '';
-  numericCols.forEach(col => {
+  cols.forEach((col, i) => {
+    const isChecked = checked.size > 0 ? checked.has(col) : i < 3;
+    const vals = rawData.map(r => parseFloat(r[col])).filter(v => !isNaN(v));
+    const mean = vals.length > 0 ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1) : 'N/A';
     const lbl = document.createElement('label');
-    lbl.className = 'col-check';
-    const cb = document.createElement('input');
-    cb.type = 'checkbox'; cb.value = col;
-    cb.checked = numericCols.indexOf(col) < 5; // default select first 5
-    cb.addEventListener('change', updateSelected);
-    lbl.appendChild(cb);
-    lbl.appendChild(document.createTextNode(col));
+    lbl.className = 'col-check' + (isChecked ? ' checked' : '');
+    lbl.innerHTML = `
+      <input type="checkbox" value="${col}" ${isChecked ? 'checked' : ''}>
+      <div class="tick">${isChecked ? '✓' : ''}</div>
+      <div style="overflow:hidden">
+        <div class="col-name">${col}</div>
+        <div class="col-meta">${vals.length} values · avg ${mean}</div>
+      </div>`;
+    lbl.querySelector('input').addEventListener('change', function() {
+      lbl.classList.toggle('checked', this.checked);
+      lbl.querySelector('.tick').textContent = this.checked ? '✓' : '';
+      updateSelected();
+    });
     wrap.appendChild(lbl);
   });
-  document.getElementById('col-selector').style.display = 'block';
-  updateSelected();
 }
  
 function updateSelected() {
   selectedCols = [...document.querySelectorAll('#col-checks input:checked')].map(c => c.value);
   document.getElementById('run-btn').disabled = selectedCols.length === 0;
+  const bar = document.getElementById('col-count-bar');
+  if (selectedCols.length > 0) {
+    bar.textContent = `✓  ${selectedCols.length} column${selectedCols.length>1?'s':''} selected: ${selectedCols.join(', ')}`;
+    bar.classList.add('show');
+  } else {
+    bar.classList.remove('show');
+  }
 }
  
 function renderPreview() {
@@ -598,9 +781,12 @@ function runSimulation() {
   return results;
 }
  
-// ── Run button ─────────────────────────────────────────────────────
-document.getElementById('run-btn').addEventListener('click', async () => {
-  if (selectedCols.length === 0) { showToast('Please select at least one column', true); return; }
+// ── Core run logic (shared by button + auto-run) ───────────────────
+let autoRunDebounce = null;
+let hasRunOnce = false;
+ 
+async function triggerRun(silent = false) {
+  if (selectedCols.length === 0) { if (!silent) showToast('Please select at least one column', true); return; }
  
   const btn = document.getElementById('run-btn');
   btn.disabled = true;
@@ -610,7 +796,6 @@ document.getElementById('run-btn').addEventListener('click', async () => {
   const pl = document.getElementById('progress-label');
   pw.classList.add('show'); pf.style.width='0%';
  
-  // Animate progress
   let prog = 0;
   const interval = setInterval(() => {
     prog = Math.min(prog + Math.random()*8, 90);
@@ -618,20 +803,39 @@ document.getElementById('run-btn').addEventListener('click', async () => {
     pl.textContent = prog < 30 ? 'Seeding random paths...' : prog < 60 ? 'Running simulations...' : 'Computing percentiles...';
   }, 80);
  
-  // Run in next tick to allow UI update
   await new Promise(r => setTimeout(r, 50));
   const results = runSimulation();
-  await new Promise(r => setTimeout(r, 100));
+  await new Promise(r => setTimeout(r, 80));
  
   clearInterval(interval);
   pf.style.width = '100%';
   pl.textContent = 'Done!';
-  setTimeout(() => { pw.classList.remove('show'); pf.style.width='0%'; }, 800);
+  setTimeout(() => { pw.classList.remove('show'); pf.style.width='0%'; }, 600);
  
   renderResults(results);
   btn.disabled = false;
-  showToast(`✓ ${parseInt(document.getElementById('sim-count').value).toLocaleString()} simulations complete`);
+ 
+  if (!hasRunOnce) {
+    hasRunOnce = true;
+    document.getElementById('auto-badge').style.display = 'block';
+  }
+  if (!silent) showToast(`✓ ${parseInt(document.getElementById('sim-count').value).toLocaleString()} simulations complete`);
+}
+ 
+// ── Run button click ────────────────────────────────────────────────
+document.getElementById('run-btn').addEventListener('click', () => triggerRun(false));
+ 
+// ── Auto-run: debounced re-run whenever a setting changes ───────────
+function scheduleAutoRun() {
+  if (!hasRunOnce) return; // only auto-run after user has run once manually
+  clearTimeout(autoRunDebounce);
+  autoRunDebounce = setTimeout(() => triggerRun(true), 600);
+}
+ 
+['sim-count','sim-method','forecast-years','time-step','conf-level'].forEach(id => {
+  document.getElementById(id).addEventListener('change', scheduleAutoRun);
 });
+document.getElementById('conf-level').addEventListener('input', scheduleAutoRun);
  
 // ── Render results ─────────────────────────────────────────────────
 const CHOC_PALETTE = ['#6B3F1F','#A0673A','#C8A97E','#E8D5B7','#F0E6D3','#3E1F0A','#8B5E3C','#2C1206'];
@@ -728,7 +932,12 @@ function buildHistogram(vals, col, fmt) {
  
 function buildFanChart(d, col, fmt) {
   const steps = d.steps, stepLabel = d.stepLabel;
-  const labels = Array.from({length:steps}, (_,i) => `${stepLabel}${i+1}`);
+  const nowY = new Date().getFullYear(), nowM = new Date().getMonth();
+  const labels = Array.from({length:steps}, (_,i) => {
+    if (stepLabel === 'Y') return String(nowY + i + 1);
+    const totalM = nowM + 3*(i+1);
+    return `Q${Math.floor((totalM%12)/3)+1} ${nowY + Math.floor(totalM/12)}`;
+  });
  
   const fp = d.forecastPercentiles;
   if (fanChart) fanChart.destroy();
@@ -761,21 +970,39 @@ function buildForecastTable(d, fmt) {
   const fp = d.forecastPercentiles;
   const steps = d.steps, stepLabel = d.stepLabel;
   const now = new Date();
-  let html = '<thead><tr><th>Period</th><th>P5</th><th>P10</th><th>P15</th><th>P20</th><th>P50 (Base)</th><th>P90</th><th>P95</th><th>P99</th></tr></thead><tbody>';
-  for (let i=0; i<steps; i++) {
-    const d2 = new Date(now);
-    if (stepLabel === 'Y') d2.setFullYear(d2.getFullYear()+(i+1));
-    else d2.setMonth(d2.getMonth()+3*(i+1));
-    const label = stepLabel==='Y'
-      ? d2.getFullYear()
-      : `Q${Math.ceil((d2.getMonth()+1)/3)} ${d2.getFullYear()}`;
+  const baseYear = now.getFullYear();
+  const baseMonth = now.getMonth(); // 0-indexed
+ 
+  let html = '<thead><tr><th>Year / Period</th><th>P5</th><th>P10</th><th>P15</th><th>P20</th><th>P50 (Base)</th><th>P90</th><th>P95</th><th>P99</th></tr></thead><tbody>';
+ 
+  for (let i = 0; i < steps; i++) {
+    let label;
+    if (stepLabel === 'Y') {
+      // Show actual calendar year e.g. 2025, 2026, 2027…
+      label = baseYear + (i + 1);
+    } else {
+      // Show actual Q + year e.g. Q3 2025, Q4 2025, Q1 2026…
+      const totalMonths = baseMonth + 3 * (i + 1);
+      const yr = baseYear + Math.floor(totalMonths / 12);
+      const mo = totalMonths % 12; // 0-indexed month in that year
+      const q = Math.floor(mo / 3) + 1;
+      label = `Q${q} ${yr}`;
+    }
+ 
+    // % change vs P50 current for colour hint
+    const p50curr = fp.p50[0];
+    const p50this = fp.p50[i];
+    const pct = p50curr !== 0 ? ((p50this - p50curr) / Math.abs(p50curr) * 100).toFixed(1) : '—';
+    const sign = parseFloat(pct) >= 0 ? '+' : '';
+    const pctHtml = `<span style="font-size:0.72rem; color:${parseFloat(pct)>=0?'#4a7c4e':'#8B1A1A'}; margin-left:4px;">(${sign}${pct}%)</span>`;
+ 
     html += `<tr>
       <td>${label}</td>
       <td>${fmt(fp.p5[i])}</td>
       <td>${fmt(fp.p10[i])}</td>
       <td>${fmt(fp.p15[i])}</td>
       <td>${fmt(fp.p20[i])}</td>
-      <td><strong>${fmt(fp.p50[i])}</strong></td>
+      <td><strong>${fmt(fp.p50[i])}</strong>${pctHtml}</td>
       <td>${fmt(fp.p90[i])}</td>
       <td>${fmt(fp.p95[i])}</td>
       <td>${fmt(fp.p99[i])}</td>
